@@ -1,0 +1,15 @@
+#nginx + fe
+[nginx]
+10.111.45.90 ansible_user=dody
+
+[docker]
+#nginx + fe
+10.111.45.90 ansible_user=dody
+#be + db
+10.111.45.159 ansible_user=dody
+#jenkins
+10.111.45.158 ansible_user=dody
+
+[monitoring]
+#monitoring
+10.111.45.146 ansible_user=dody

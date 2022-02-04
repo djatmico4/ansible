@@ -1,0 +1,13 @@
+- hosts: nginx
+  become: true
+  become_user: dody
+  gather_facts: yes
+  tasks:
+     - name: "install nginx"
+       apt:
+          name: nginx
+          state: latest
+          
+     - name: "update cache"
+       apt:
+          update_cache: yes

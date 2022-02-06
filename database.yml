@@ -1,0 +1,17 @@
+- hosts: 10.111.45.159
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "copy configuration MySQL"
+      copy:
+        src: config/
+        dest: /home/dody
+        owner: dody
+        group: sudo
+        mode: 0664
+    
+    - name: "build image custom MySQL"
+      command: "chdir=/home/dody/config docker build -t djatmico/db ."
+
+    - name: "start MySQL"
+      command: "docker run -d --name=mysql-db -v /home/dody/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=2Wsx8ik, -p 3306:3306 djatmico/db"

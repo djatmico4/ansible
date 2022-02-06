@@ -1,0 +1,15 @@
+- hosts: 10.111.45.159
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "git clone be from github"
+      command: "chdir=/home/dody git clone git@github.com:djatmico4/wayhsub-backend.git"
+    
+    - name: "rename directory to be backend"
+      command: "chdir=/home/dody mv wayshub-backend backend"
+    
+    - name: "create image backend"
+      command: "chdir=/home/dody/backend docker build -t djatmico/backend:1.0 ."
+
+    - name: "run container backend"
+      command: "docker run -d --name=backend:1.0 -p 5000:5000 djatmico/backend:1.0"

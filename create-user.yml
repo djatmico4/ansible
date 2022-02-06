@@ -1,0 +1,29 @@
+- hosts: 10.111.45.96
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "create user"
+      user: 
+        name: dody
+        password: 1412
+        generate_ssh_key: yes
+        ssh_key_bits: 4096
+        ssh_key_file: .ssh/id_rsa
+        group: sudo
+        shell: /bin/bash
+        creathome: yes
+        home: /home/dody
+
+- hosts: all
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "change config sshd_config to use password"
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: 'PasswordAuthentication no'
+        line: PasswordAuthentication yes
+    - name: reload systemd sshd
+      systemd:
+        name: sshd
+        state: reloaded

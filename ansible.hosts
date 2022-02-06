@@ -1,6 +1,7 @@
 #nginx + fe
 [nginx]
-10.111.45.90 ansible_user=dody
+#10.111.45.90 ansible_user=dody
+10.111.45.96 ansible_user=dody
 
 [all]
 #nginx + fe
@@ -11,6 +12,8 @@
 10.111.45.158 ansible_user=dody
 #monitoring
 10.111.45.146 ansible_user=dody
+#coba
+10.111.45.96 ansible_user=dody
 
 [all:vars]
 ansible_password=1412

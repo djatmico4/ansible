@@ -1,0 +1,15 @@
+- hosts: 10.111.45.90
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "git clone fe from github"
+      command: "chdir=/home/dody git clone git@github.com:djatmico4/wayhsub-frontend.git"
+    
+    - name: "rename directory to be frontend"
+      command: "chdir=/home/dody mv wayshub-frontend frontend"
+    
+    - name: "create image frontend"
+      command: "chdir=/home/dody/frontend docker build -t djatmico/frontend:1.0 ."
+
+    - name: "run container frontend"
+      command: "chdir=/home/dody/frontend docker-compose up -d"

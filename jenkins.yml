@@ -1,0 +1,6 @@
+- hosts: 10.111.45.158
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "run container jenkins"
+      command: "docker run -u 0 --name cicd -p 8080:8080 -p 50000:50000 -d -v /home/dody/jenkins_home:/var/jenkins_home jenkins/jenkins"

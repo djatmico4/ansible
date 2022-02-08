@@ -10,6 +10,6 @@
         group: sudo
         mode: 0664
     - name: "install prometheus"
-      command: "docker run -d --name=prometheus -p 9090:9090 -v /home/dody/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus"
-    - name: "install grafana"
-      command: "docker run -d --name=grafana -p 3000:3000 grafana/grafana"
+      command: "docker run -d --name=prometheus -p 9100:9100 -v /home/dody/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus"
+    # - name: "install grafana"
+    #   command: "docker run -d --name=grafana -p 3000:3000 grafana/grafana"

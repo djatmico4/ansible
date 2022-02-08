@@ -33,3 +33,22 @@
          - docker-ce
          - docker-ce-cli
          - containerd.io
+
+     - name: "install docker compose"
+       get_url:
+        url : https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: '755'
+
+     - name: "apply executable permission to the binary"
+       shell: "sudo chmod +x /usr/local/bin/docker-compose"
+       args:
+         executable: /bin/bash
+
+     - name: "remove sudo on docker command"
+       shell: "sudo usermod -aG docker dody"
+       args:
+         executable: /bin/bash
+
+     - name: "docker system enable"
+       command: sudo systemctl enable docker

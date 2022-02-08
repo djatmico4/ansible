@@ -1,0 +1,10 @@
+- hosts: frontend:backend
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "output public key"
+      command: "cat /home/dody/.ssh/id_rsa.pub"
+      register: command_output
+    
+    - debug:
+        var: command_output.stdout_lines

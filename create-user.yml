@@ -1,19 +1,19 @@
-- hosts: 10.111.45.96
+- hosts: all
   become: true
   gather_facts: yes
   tasks:
-    - name: "create user"
+    - name: "create new user"
       user: 
         name: dody
-        password: 1412
+        password: $6$NSuNdjQzyDBdGY$FjyceQ0EFUIQT2IancQqmjLPFrCCmppeWgNla.KdSuW7cx3tZTrFjXpQmx85SpQV2p2ORjyQMEgmFEweh0Yd2/
         generate_ssh_key: yes
         ssh_key_bits: 4096
         ssh_key_file: .ssh/id_rsa
         group: sudo
         shell: /bin/bash
-        creathome: yes
+        createhome: yes
         home: /home/dody
-
+    
 - hosts: all
   become: true
   gather_facts: yes
@@ -23,7 +23,14 @@
         path: /etc/ssh/sshd_config
         regexp: 'PasswordAuthentication no'
         line: PasswordAuthentication yes
-    - name: reload systemd sshd
+    
+    - name: "enable password authentication"
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '#PubkeyAuthentication yes'
+        line: PubkeyAuthentication yes
+    
+    - name: "restart systemd sshd"
       systemd:
         name: sshd
-        state: reloaded
+        state: restarted

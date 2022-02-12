@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: database
   become: true
   gather_facts: yes
   tasks:
@@ -14,7 +14,7 @@
         createhome: yes
         home: /home/dody
     
-- hosts: all
+- hosts: database
   become: true
   gather_facts: yes
   tasks:

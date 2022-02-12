@@ -1,4 +1,4 @@
-- hosts: 10.111.45.90
+- hosts: frontend
   become: true
   gather_facts: yes
   tasks:
@@ -9,7 +9,7 @@
       command: "chdir=/home/dody mv wayshub-frontend frontend"
     
     - name: "create image frontend"
-      command: "chdir=/home/dody/frontend docker build -t djatmico/frontend:1.0 ."
+      command: "chdir=/home/dody/frontend docker build -t djatmico/frontend ."
 
     - name: "run container frontend"
       command: "chdir=/home/dody/frontend docker-compose up -d"

@@ -1,18 +1,7 @@
-- hosts: nginx
+- hosts: webserver
   become: true
   gather_facts: yes
   tasks:
-     - name: "update system"
-       apt:
-        update_cache: yes
-     
-     - name: "upgrade system"
-       apt:
-        upgrade: dist
-
-     - name: "install nginx"
-       apt:
-          name: nginx
-          state: latest
-          
+    - name: "run container nginx"
+      command: docker run -d --name nginx -v /home/dody/nginx:/var/www/html/ nginx          
      

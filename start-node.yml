@@ -1,0 +1,6 @@
+- hosts: all
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: "start docker node-exporter"
+      command: "docker start node-exporter"

@@ -1,9 +1,0 @@
-- hosts: all
-  become: true
-  gather_facts: yes
-  tasks:
-    - name: "run node-exporter"
-      docker_container:
-          name: "{{node-exporter}}"
-          image: prom/node-exporter
-          state: started

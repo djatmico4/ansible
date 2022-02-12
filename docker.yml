@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: database
   become: true
   gather_facts: yes
   tasks:
@@ -13,6 +13,9 @@
          - curl
          - gnupg-agent
          - software-properties-common
+        #  - python3-pip
+        #  - virtualenv
+        #  - python3-setuptools
 
      - name: "add GPG key"
        apt_key:

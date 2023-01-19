@@ -1,4 +1,4 @@
-- hosts: database
+- hosts: Monitoring
   become: true
   gather_facts: yes
   tasks:
